@@ -20,6 +20,7 @@ public class Account {
     @JoinColumn(name = "ncontract",referencedColumnName = "id")
     @JsonBackReference
     private Contract contract;
+
     private String number;
 
     @Enumerated(EnumType.STRING)
