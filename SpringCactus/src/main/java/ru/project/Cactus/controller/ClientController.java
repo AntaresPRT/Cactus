@@ -1,5 +1,6 @@
 package ru.project.Cactus.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,12 +14,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/client")
 @RequiredArgsConstructor
+@Tag(name = "client_methods")
 public class ClientController {
 
     private final Logger logger = LoggerFactory.getLogger(ClientController.class);
     private final ClientService clientService;
     @PostMapping("/add")
-    public void saveClient(@RequestBody ClientDTO clientDTO) {
+    public void save(@RequestBody ClientDTO clientDTO) {
         logger.info("Add new client");
         clientService.save(clientDTO);
     }
@@ -36,13 +38,13 @@ public class ClientController {
     }
 
     @PutMapping("/update/{id}")
-    public void updateClient(@PathVariable("id") int id,@RequestBody ClientDTO clientDTO) {
+    public void update(@PathVariable("id") int id,@RequestBody ClientDTO clientDTO) {
         logger.info("Update client by id: {}", id);
         clientService.update(id,clientDTO);
     }
 
     @DeleteMapping("/delete")
-    public void deleteClient(@RequestParam int id) {
+    public void delete(@RequestParam int id) {
         logger.info("Delete client by id: {}", id);
         clientService.delete(id);
     }

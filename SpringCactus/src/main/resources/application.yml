@@ -1,3 +1,5 @@
+logging:
+  config: 'classpath:log4j2.yml'
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/cactus
@@ -7,5 +9,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+    show-sql: true
 server:
   port: 8000

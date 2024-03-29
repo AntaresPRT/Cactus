@@ -1,2 +1,53 @@
-package ru.project.Cactus.controller;public class AccountController {
+package ru.project.Cactus.controller;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.*;
+import ru.project.Cactus.DTO.AccountDTO;
+import ru.project.Cactus.DTO.ContractDTO;
+import ru.project.Cactus.entity.Account;
+import ru.project.Cactus.entity.Contract;
+import ru.project.Cactus.service.AccountService;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/account")
+@RequiredArgsConstructor
+@Tag(name = "account_methods")
+public class AccountController {
+    private final Logger logger = LoggerFactory.getLogger(AccountController.class);
+    private final AccountService accountService;
+
+    @PostMapping("/add")
+    public void save(@RequestBody AccountDTO accountDTO) {
+        logger.info("Add new account");
+        accountService.save(accountDTO);
+    }
+
+    @GetMapping("/findAll")
+    public List<Account> findAll() {
+        logger.info("Find all accounts");
+        return accountService.findAll();
+    }
+
+    @GetMapping("/findById")
+    public Account findById(@RequestParam int id) {
+        logger.info("Find account by id: {}", id);
+        return accountService.findById(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public void update(@PathVariable("id") int id,@RequestBody AccountDTO accountDTO) {
+        logger.info("Update account by id: {}", id);
+        accountService.update(id,accountDTO);
+    }
+
+    @DeleteMapping("/delete")
+    public void delete(@RequestParam int id) {
+        logger.info("Delete account by id: {}", id);
+        accountService.delete(id);
+    }
 }

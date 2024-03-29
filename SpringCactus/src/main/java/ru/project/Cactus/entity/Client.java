@@ -1,10 +1,13 @@
 package ru.project.Cactus.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "client")
@@ -24,4 +27,7 @@ public class Client {
     private String number;
     private String email;
     private String password;
+    @OneToMany(mappedBy = "client")
+    @JsonManagedReference
+    private List<Contract> contractList;
 }

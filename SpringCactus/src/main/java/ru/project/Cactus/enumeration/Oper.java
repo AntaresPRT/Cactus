@@ -1,4 +1,4 @@
-package ru.project.Cactus.entity.enumeration;
+package ru.project.Cactus.enumeration;
 
 public enum Oper {
     OPEN,
