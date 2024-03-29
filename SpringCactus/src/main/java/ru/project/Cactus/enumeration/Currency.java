@@ -1,4 +1,4 @@
-package ru.project.Cactus.entity;
+package ru.project.Cactus.entity.enumeration;
 
 public enum Currency {
     AED,
