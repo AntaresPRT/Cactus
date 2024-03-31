@@ -6,8 +6,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import ru.project.Cactus.DTO.OperationDTO;
 import ru.project.Cactus.entity.Operation;
+import ru.project.Cactus.enumeration.Oper;
 import ru.project.Cactus.reposiroty.OperationRepository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -46,5 +48,20 @@ public class OperationService {
         operation.setSumm(updatedOperationDTO.getSumm());
         operation.setContract(updatedOperationDTO.getContract());
         return operation;
+    }
+
+    public BigDecimal getBalance(int ncontract) {
+        List<Operation> operations = operationRepository.findAllByContractId(ncontract);
+        BigDecimal balance = BigDecimal.ZERO;
+
+        for (Operation operation : operations) {
+            if (operation.getTypeOper() == Oper.REPLENISHMENT) {
+                balance = balance.add(operation.getSumm());
+            } else if (operation.getTypeOper() == Oper.WITHDRAWAL) {
+                balance = balance.subtract(operation.getSumm());
+            }
+        }
+
+        return balance;
     }
 }

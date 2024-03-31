@@ -19,7 +19,8 @@ public class AccountService {
     public void save(AccountDTO accountDTO) {
         accountRepository.customInsert(accountDTO.getContract().getId(),
                 accountDTO.getCurr().name(),
-                accountDTO.getNumber());
+                accountDTO.getNumber()
+        );
     }
 
 

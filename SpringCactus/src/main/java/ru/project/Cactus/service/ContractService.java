@@ -16,8 +16,12 @@ public class ContractService {
 
     private final ContractRepository contractRepository;
 
-    public void save(Contract contract) {
-        contractRepository.save(contract);
+    public void save(ContractDTO contractDTO) {
+        contractRepository.save(Contract.builder()
+                        .dateopen(contractDTO.getDateopen())
+                        .dateclose(contractDTO.getDateclose())
+                        .client(contractDTO.getClient())
+                .build());
     }
 
     public List<Contract> findAll() {

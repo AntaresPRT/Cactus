@@ -9,6 +9,7 @@ import ru.project.Cactus.DTO.OperationDTO;
 import ru.project.Cactus.entity.Operation;
 import ru.project.Cactus.service.OperationService;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -49,4 +50,5 @@ public class OperationController {
         logger.info("Delete operation by id: {}", id);
         operationService.delete(id);
     }
+
 }

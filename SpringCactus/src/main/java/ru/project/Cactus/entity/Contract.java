@@ -27,12 +27,13 @@ public class Contract {
     @JoinColumn(name = "clientid",referencedColumnName = "id")
     @JsonBackReference
     private Client client;
+
     private LocalDate dateopen;
     private LocalDate dateclose;
 
     @OneToMany(mappedBy = "contract")
     @JsonManagedReference
-    private List<Account> accountList;
+    private List<Account> accounts;
 
     @OneToMany(mappedBy = "contract")
     @JsonManagedReference

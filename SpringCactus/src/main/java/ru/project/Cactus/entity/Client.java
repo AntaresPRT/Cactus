@@ -29,5 +29,5 @@ public class Client {
     private String password;
     @OneToMany(mappedBy = "client")
     @JsonManagedReference
-    private List<Contract> contractList;
+    private List<Contract> contracts;
 }

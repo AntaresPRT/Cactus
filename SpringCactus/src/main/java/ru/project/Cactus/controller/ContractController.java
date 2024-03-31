@@ -16,15 +16,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/contract")
 @RequiredArgsConstructor
-@Tag(name = "contact_methods")
+@Tag(name = "contract_methods")
 public class ContractController {
     private final Logger logger = LoggerFactory.getLogger(ClientController.class);
     private final ContractService contractService;
 
     @PostMapping("/add")
-    public void save(@RequestBody Contract contract) {
+    public void save(@RequestBody ContractDTO contractDTO) {
         logger.info("Add new contract");
-        contractService.save(contract);
+        contractService.save(contractDTO);
     }
 
     @GetMapping("/findAll")
